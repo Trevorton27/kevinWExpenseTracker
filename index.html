@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Expense Tracker</title>
+<header>
+    <h1>Expense Tracker</h1>
+</header>
+</head>
+<body>
+    <div id="form-box">
+        <form>
+            <div>
+                <span>Date:</span> <input type="date" name="date">            
+            </div>
+            <div>
+                <span>Location:</span> <input type="text" name="location">
+            </div>
+            <div>
+                <span>Amount:</span> <input type="number" name="amount">
+            </div>
+            <br>
+            <div>
+                <span>Description:</span> <input type="text" name="purchase-description">
+            </div>
+            <div>
+            <span>Category:</span> 
+            <select name="type">
+                <option value="food">Food</option>
+                <option value="housing">Housing</option>
+                <option value="insurance">Insurance</option>
+                <option value="medical">Medical</option>
+                <option value="personal">Personal</option>
+                <option value="recreation">Recreation</option>
+                <option value="transportation">Transportation</option>
+                <option value="utilities">Utilities</option>               
+            </select>
+            </div>            
+        </form>
+    </div>
+    <br>
+    <div id="button">
+        <input type="submit" class = "button" value="Add New Expense">
+    </div>
+    <br>
+    <table id="table">
+        <thead>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <tfoot>
+            <td scope="row">Total:</td>
+            <td></td>                
+        </tfoot>
+    </table>       
+</body>
+</html>
