@@ -11,24 +11,24 @@
 </header>
 </head>
 <body>
-    <div id="form-box">
-        <form>
+    <div >
+        <form id="form">
             <div>
-                <span>Date:</span> <input type="date" name="date">            
+                <span>Date:</span> <input id="date" class="expense-input" type="date" name="date">            
             </div>
             <div>
-                <span>Location:</span> <input type="text" name="location">
+                <span>Location:</span> <input id="location" class="expense-input" type="text" name="location" placeholder="Where was the purchase made?">
             </div>
             <div>
-                <span>Amount:</span> <input type="number" name="amount">
+                <span>Amount:</span> <input id="amount" class="expense-input" type="number" name="amount" placeholder="How much?">
             </div>
             <br>
             <div>
-                <span>Description:</span> <input type="text" name="purchase-description">
+                <span>Description:</span> <input id="description" class="expense-input" type="text" name="description" placeholder="Write a brief description of the expense...">
             </div>
             <div>
             <span>Category:</span> 
-            <select name="type">
+            <select id="category" name="type">
                 <option value="food">Food</option>
                 <option value="housing">Housing</option>
                 <option value="insurance">Insurance</option>
@@ -38,20 +38,22 @@
                 <option value="transportation">Transportation</option>
                 <option value="utilities">Utilities</option>               
             </select>
-            </div>            
+            </div>
+            <br> 
+            <div id="button">
+                <input type="submit" class = "button" value="Add New Expense">
+            </div>           
         </form>
     </div>
     <br>
-    <div id="button">
-        <input type="submit" class = "button" value="Add New Expense">
-    </div>
+    
     <br>
     <table id="table">
         <thead>
             <th>Date</th>
             <th>Location</th>
-            <th>Amount</th>
             <th>Description</th>
+            <th>Amount</th>
             <th>Category</th>
             <th>Delete</th>
         </thead>
@@ -64,4 +66,5 @@
         </tfoot>
     </table>       
 </body>
+<script src="main.js"></script>
 </html>
