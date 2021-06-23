@@ -14,17 +14,17 @@
     <div >
         <form id="form">
             <div>
-                <span>Date:</span> <input id="date" class="expense-input" type="date" name="date">            
+                <span>Date:</span> <input id="date" class="expense-input" type="date" name="date" required>            
             </div>
             <div>
-                <span>Location:</span> <input id="location" class="expense-input" type="text" name="location" placeholder="Where was the purchase made?">
+                <span>Location:</span> <input id="location" class="expense-input" type="text" name="location" placeholder="Where was the purchase made?" required>
             </div>
             <div>
-                <span>Amount:</span> <input id="amount" class="expense-input" type="number" name="amount" placeholder="How much?">
+                <span>Amount:</span> <input id="amount" class="expense-input" type="number" name="amount" placeholder="How much?" required>
             </div>
             <br>
             <div>
-                <span>Description:</span> <input id="description" class="expense-input" type="text" name="description" placeholder="Write a brief description of the expense...">
+                <span>Description:</span> <input id="description" class="expense-input" type="text" name="description" placeholder="Write a brief description of the expense..." required>
             </div>
             <div>
             <span>Category:</span> 
@@ -48,16 +48,16 @@
     <br>
     
     <br>
-    <table id="table">
+    <table id ="table">
         <thead>
             <th>Date</th>
             <th>Location</th>
             <th>Description</th>
             <th>Amount</th>
             <th>Category</th>
-            <th>Delete</th>
+            <!-- <th>Delete</th> -->
         </thead>
-        <tbody>
+        <tbody id="table-body">
 
         </tbody>
         <tfoot>
