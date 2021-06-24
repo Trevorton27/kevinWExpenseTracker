@@ -1,8 +1,8 @@
-// delete expense row 
 // sum of all amounts
 // pie chart from categories
 document.getElementById("form").addEventListener('submit', addExpense);
 document.getElementById("form").addEventListener('submit', resetForm);
+document.getElementById("form").addEventListener('submit', amountTotal);
 document.getElementById("table").addEventListener('click', removeItem);
 
 
@@ -28,6 +28,7 @@ function addExpense (e) {
     cell1.innerHTML = date;
     cell2.innerHTML = location;
     cell3.innerHTML = description;
+    // cell4.innerHTML = amount;
     cell4.innerHTML = '$' + amount;
     cell5.innerHTML = category;
     cell6.innerHTML = deleteButton;
@@ -42,4 +43,15 @@ function removeItem(e){
 
 function resetForm() {
     document.getElementById("form").reset();
+}
+
+function amountTotal(){
+    const table = document.getElementById("table-body")
+    let amountSum = 0;
+
+    for(i=0; i < table.rows.length; i++){
+        amountSum = amountSum + parseInt(table.rows[i].cells[3].innerHTML.replace(/\$/, ''));
+    }
+    document.getElementById("total-number").innerHTML = '$' + amountSum;
+    console.log(amountSum)
 }

@@ -51,3 +51,11 @@ table {
     width: 33.3333%;
     /* border: 2px solid black; */
   }
+
+  #total{
+    text-align: right;
+  }
+
+  #total-number{
+    text-align: left;
+  }
