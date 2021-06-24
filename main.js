@@ -3,7 +3,8 @@
 // pie chart from categories
 document.getElementById("form").addEventListener('submit', addExpense);
 document.getElementById("form").addEventListener('submit', resetForm);
-// document.getElementById("delete-button").addEventListener('click', removeItem);
+document.getElementById("table").addEventListener('click', removeItem);
+
 
 function addExpense (e) {
     e.preventDefault();
@@ -13,9 +14,10 @@ function addExpense (e) {
     const description = document.getElementById("description").value;
     const category = document.getElementById("category").value;
     const table = document.getElementById("table-body")
-    const deleteButton = "<button id='delete-button' onclick='removeItem()' >X</button>"
+    const deleteButton = "<button class='delete-button'>X</button>"
     
     const row = table.insertRow(0);
+    row.className = 'table-row'
     const cell1 = row.insertCell(0);
     const cell2 = row.insertCell(1);
     const cell3 = row.insertCell(2);
@@ -31,16 +33,9 @@ function addExpense (e) {
     cell6.innerHTML = deleteButton;
 }
 
-// function createDeleteButton() {
-//     const deleteButton = document.createElement('button');
-//     deleteButton.className = 'delete-button';
-//     deleteButton.appendChild(document.createTextNode('X'));
-//     return deleteButton;
-// }
-
-function removeItem(){
+function removeItem(e){
     if(e.target.classList.contains('delete-button')){
-    const taskToRemove = e.target.parentElement;
+    const taskToRemove = e.target.parentNode.parentNode;
     taskToRemove.remove();
     }
 }
