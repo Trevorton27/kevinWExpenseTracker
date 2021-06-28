@@ -1,7 +1,7 @@
 // pie chart from categories
 document.getElementById("form").addEventListener('submit', addExpense);
 document.getElementById("form").addEventListener('submit', resetForm);
-document.getElementById("table").addEventListener('click', removeItem);
+document.getElementById("table").addEventListener('click', removeExpense);
 const dateInput = document.getElementById("date");
 const locationInput = document.getElementById("location");
 const amountInput = document.getElementById("amount");
@@ -23,19 +23,17 @@ function addExpense(e){
 
     renderExpenseRow(newExpense);
     expenseArray.push(newExpense);
-    console.log('expenseArray: ', expenseArray)
     renderTotalExpensesAmount();
+    console.log(expenseArray)
 }
 
 function renderExpenseRow(expense) {
    
-
-    const table = document.getElementById("table-body");
     const deleteButton = document.createElement('button');
     deleteButton.setAttribute("class", "delete-button");
     deleteButton.innerHTML = "X"
     
-    const row = table.insertRow(0);
+    const row = document.getElementById("table-body").insertRow(0);
     row.className = 'table-row';
     const cell1 = row.insertCell(0);
     const cell2 = row.insertCell(1);
@@ -49,21 +47,23 @@ function renderExpenseRow(expense) {
     cell3.textContent = expense.description;
     cell4.textContent = '$' + expense.amount;
     cell5.textContent = expense.category;
-    cell6.textContent = deleteButton;
+    cell6.appendChild(deleteButton);
 }
 
-function removeItem(e){
+function removeExpense(e){
+    e.preventDefault();
+
     if(e.target.classList.contains('delete-button')){
-    const taskToRemove = e.target.parentNode.parentNode;
-    taskToRemove.remove();
+    const expenseToRemove = e.target.parentNode.parentNode;
+    expenseToRemove.remove(); 
+    
+    renderTotalExpensesAmount()
     }
 }
 
 function resetForm() {
     document.getElementById("form").reset();
 }
-
-
 
 function renderTotalExpensesAmount(){
     const table = document.getElementById("table-body");
@@ -72,7 +72,5 @@ function renderTotalExpensesAmount(){
     expenseArray.forEach(({amount}) => {
         amountSum += parseFloat(amount);
         document.getElementById("total-number").textContent = '$' + amountSum;
-        console.log(amountSum);
-    })
-   
-}
+    }) 
+};
