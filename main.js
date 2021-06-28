@@ -1,23 +1,42 @@
-// sum of all amounts
 // pie chart from categories
 document.getElementById("form").addEventListener('submit', addExpense);
 document.getElementById("form").addEventListener('submit', resetForm);
-document.getElementById("form").addEventListener('submit', amountTotal);
 document.getElementById("table").addEventListener('click', removeItem);
+const dateInput = document.getElementById("date");
+const locationInput = document.getElementById("location");
+const amountInput = document.getElementById("amount");
+const descriptionInput = document.getElementById("description");
+const categoryInput = document.getElementById("category");
 
+const expenseArray = [];
 
-function addExpense (e) {
+function addExpense(e){
     e.preventDefault();
-    const date = document.getElementById("date").value;
-    const location = document.getElementById("location").value;
-    const amount = document.getElementById("amount").value;
-    const description = document.getElementById("description").value;
-    const category = document.getElementById("category").value;
-    const table = document.getElementById("table-body")
-    const deleteButton = "<button class='delete-button'>X</button>"
+
+    const newExpense = {
+        amount: amountInput.value,
+        date: dateInput.value,
+        location: locationInput.value,
+        description: descriptionInput.value,
+        category: categoryInput.value
+    };
+
+    renderExpenseRow(newExpense);
+    expenseArray.push(newExpense);
+    console.log('expenseArray: ', expenseArray)
+    renderTotalExpensesAmount();
+}
+
+function renderExpenseRow(expense) {
+   
+
+    const table = document.getElementById("table-body");
+    const deleteButton = document.createElement('button');
+    deleteButton.setAttribute("class", "delete-button");
+    deleteButton.innerHTML = "X"
     
     const row = table.insertRow(0);
-    row.className = 'table-row'
+    row.className = 'table-row';
     const cell1 = row.insertCell(0);
     const cell2 = row.insertCell(1);
     const cell3 = row.insertCell(2);
@@ -25,13 +44,12 @@ function addExpense (e) {
     const cell5 = row.insertCell(4);
     const cell6 = row.insertCell(5);
     
-    cell1.innerHTML = date;
-    cell2.innerHTML = location;
-    cell3.innerHTML = description;
-    // cell4.innerHTML = amount;
-    cell4.innerHTML = '$' + amount;
-    cell5.innerHTML = category;
-    cell6.innerHTML = deleteButton;
+    cell1.textContent = expense.date;
+    cell2.textContent = expense.location;
+    cell3.textContent = expense.description;
+    cell4.textContent = '$' + expense.amount;
+    cell5.textContent = expense.category;
+    cell6.textContent = deleteButton;
 }
 
 function removeItem(e){
@@ -45,13 +63,16 @@ function resetForm() {
     document.getElementById("form").reset();
 }
 
-function amountTotal(){
-    const table = document.getElementById("table-body")
+
+
+function renderTotalExpensesAmount(){
+    const table = document.getElementById("table-body");
     let amountSum = 0;
 
-    for(i=0; i < table.rows.length; i++){
-        amountSum = amountSum + parseInt(table.rows[i].cells[3].innerHTML.replace(/\$/, ''));
-    }
-    document.getElementById("total-number").innerHTML = '$' + amountSum;
-    console.log(amountSum)
+    expenseArray.forEach(({amount}) => {
+        amountSum += parseFloat(amount);
+        document.getElementById("total-number").textContent = '$' + amountSum;
+        console.log(amountSum);
+    })
+   
 }
