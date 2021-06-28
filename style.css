@@ -29,7 +29,7 @@ table {
     margin: auto;
     overflow-y: scroll;
     position: static;
-    width: 60%;
+    width: 66%;
     border: 2px solid black;
   }
   thead th {

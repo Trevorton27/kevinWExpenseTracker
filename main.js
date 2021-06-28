@@ -1,4 +1,3 @@
-// pie chart from categories
 document.getElementById("form").addEventListener('submit', addExpense);
 document.getElementById("form").addEventListener('submit', resetForm);
 document.getElementById("table").addEventListener('click', removeExpense);
@@ -8,7 +7,6 @@ const amountInput = document.getElementById("amount");
 const descriptionInput = document.getElementById("description");
 const categoryInput = document.getElementById("category");
 
-const expenseArray = [];
 
 function addExpense(e){
     e.preventDefault();
@@ -22,9 +20,6 @@ function addExpense(e){
     };
 
     renderExpenseRow(newExpense);
-    expenseArray.push(newExpense);
-    renderTotalExpensesAmount();
-    console.log(expenseArray)
 }
 
 function renderExpenseRow(expense) {
@@ -41,6 +36,8 @@ function renderExpenseRow(expense) {
     const cell4 = row.insertCell(3);
     const cell5 = row.insertCell(4);
     const cell6 = row.insertCell(5);
+
+    updateTotal(expense.amount);
     
     cell1.textContent = expense.date;
     cell2.textContent = expense.location;
@@ -55,9 +52,12 @@ function removeExpense(e){
 
     if(e.target.classList.contains('delete-button')){
     const expenseToRemove = e.target.parentNode.parentNode;
-    expenseToRemove.remove(); 
+    let amountToRemove = parseFloat(expenseToRemove.childNodes[3].textContent.split('').filter((x) => x ==="$"? '': x).join(''));
+
+    updateTotal(-Math.abs(amountToRemove))
     
-    renderTotalExpensesAmount()
+    expenseToRemove.remove();   
+
     }
 }
 
@@ -65,12 +65,8 @@ function resetForm() {
     document.getElementById("form").reset();
 }
 
-function renderTotalExpensesAmount(){
-    const table = document.getElementById("table-body");
-    let amountSum = 0;
-
-    expenseArray.forEach(({amount}) => {
-        amountSum += parseFloat(amount);
-        document.getElementById("total-number").textContent = '$' + amountSum;
-    }) 
-};
+function updateTotal(amount) {
+    const currentTotal = parseFloat(document.getElementById("total-number").textContent);
+    const updatedTotal = (currentTotal + parseFloat(amount)).toFixed(2);
+    document.getElementById("total-number").textContent = `${updatedTotal}`;
+}

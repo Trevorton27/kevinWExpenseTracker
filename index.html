@@ -14,17 +14,17 @@
     <div >
         <form id="form">
             <div>
-                <span>Date:</span> <input id="date" class="expense-input" type="date" name="date" >            
+                <span>Date:</span> <input id="date" class="expense-input" type="date" name="date" required>            
             </div>
             <div>
-                <span>Location:</span> <input id="location" class="expense-input" type="text" name="location" placeholder="Where was the purchase made?" >
+                <span>Location:</span> <input id="location" class="expense-input" type="text" name="location" placeholder="Where was the purchase made?" required>
             </div>
             <div>
-                <span>Amount: $</span> <input id="amount" class="expense-input" type="number" name="amount" placeholder="How much?" step=".01" >
+                <span>Amount: $</span> <input id="amount" class="expense-input" type="number" name="amount" placeholder="How much?" min="0" step=".01" required>
             </div>
             <br>
             <div>
-                <span>Description:</span> <input id="description" class="expense-input" type="text" name="description" placeholder="Write a brief description of the expense..." >
+                <span>Description:</span> <input id="description" class="expense-input" type="text" name="description" placeholder="Write a brief description of the expense..." required>
             </div>
             <div>
             <span>Category:</span> 
@@ -63,7 +63,7 @@
             <td></td>
             <td></td>
             <td scope="row" id="total">Total:</td>
-            <td id="total-number" step=".01"></td>                
+            <td id="" step=".01">$<span id="total-number">0</span></td>                
         </tfoot>
     </table>       
 </body>
