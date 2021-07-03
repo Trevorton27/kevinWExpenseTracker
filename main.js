@@ -1,4 +1,3 @@
-const expenseArray = JSON.parse(localStorage.getItem('expenseArray')) || [];
 document.getElementById('form').addEventListener('submit', addExpense);
 const dateInput = document.getElementById('date');
 const locationInput = document.getElementById('location');
@@ -28,11 +27,21 @@ function addExpense(e) {
     category: categoryInput.value
   };
 
+  const expenseArray = getExpenses();
   renderExpenseRow(newExpense);
   expenseArray.push(newExpense);
   pushToLocalStorage(expenseArray);
   updateTotal();
   document.getElementById('form').reset();
+}
+
+function pushToLocalStorage(array) {
+  localStorage.setItem('expenseArray', JSON.stringify(array));
+}
+
+function getExpenses() {
+  return (expenseArray =
+    JSON.parse(localStorage.getItem('expenseArray')) || []);
 }
 
 function renderExpenseRow(expense) {
@@ -56,6 +65,7 @@ function renderExpenseRow(expense) {
 }
 
 function createDeleteButton(expense) {
+  const expenseArray = getExpenses();
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'x';
   deleteButton.classList.add('DeleteButton');
@@ -65,11 +75,8 @@ function createDeleteButton(expense) {
   return deleteButton;
 }
 
-function pushToLocalStorage(array) {
-  localStorage.setItem('expenseArray', JSON.stringify(array));
-}
-
 const deleteExpense = (deleteButton, id) => {
+  const expenseArray = getExpenses();
   deleteButton.parentElement.parentElement.remove();
   for (let i = 0; i < expenseArray.length; i++) {
     if (expenseArray[i].id === id) {
@@ -99,6 +106,7 @@ function formatDate(dateInput) {
 }
 
 window.addEventListener('load', () => {
+  const expenseArray = getExpenses();
   expenseArray.forEach((expense) => {
     renderExpenseRow(expense);
   });
